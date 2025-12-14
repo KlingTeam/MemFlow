@@ -18,7 +18,7 @@
   </p>
   <p>
     <sup>1</sup>The University of Hong Kong &nbsp;&nbsp;
-    <sup>2</sup>Kuaishou Technology<br>
+    <sup>2</sup>Kling Team, Kuaishou Technology<br>
     <sup>3</sup>Hong Kong University of Science and Technology (Guangzhou) &nbsp;&nbsp;
     <!-- <sup>3</sup>HKUST(GZ) &nbsp;&nbsp; -->
     <sup>✉</sup>Corresponding author
@@ -37,10 +37,10 @@
 <!-- **Note:** This open-source repository is intended to provide a reference implementation. Due to the difference in the underlying I2V model's performance, the open-source version may not achieve the same performance as the model in our paper.  -->
 
 ## 🔥 Updates
-- __[2025.12.09]__: Training and inference code, [model checkpoints](https://huggingface.co/KlingTeam/MemFlow) are available.
+- __[2025.12.14]__: Training and inference code, [model checkpoints](https://huggingface.co/KlingTeam/MemFlow) are available.
 <!-- - __[2025.09.25]__: [CamCloneMaster](https://arxiv.org/abs/2506.03140) has been accepted by SIGGRAPH Aisa 2025. -->
 <!-- - __[2025.09.08]__: [CameraClone Dataset](https://huggingface.co/datasets/KwaiVGI/CameraClone-Dataset/) is avaliable. -->
-- __[2025.12.09]__: Release the [project page](https://sihuiji.github.io/MemFlow-Page/) and the [Arxiv](https://arxiv.org/abs/2506.03140) version.
+- __[2025.12.14]__: Release the [project page](https://sihuiji.github.io/MemFlow-Page/) and the [Arxiv](https://arxiv.org/abs/2506.03140) version.
 
 ## 📷 Introduction
 **TL;DR:** 
