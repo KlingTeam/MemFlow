@@ -1,0 +1,2 @@
+prompts/vidprom_filtered_extended_switch.txt filter=lfs diff=lfs merge=lfs -text
+prompts/vidprom_filtered_extended.txt filter=lfs diff=lfs merge=lfs -text
