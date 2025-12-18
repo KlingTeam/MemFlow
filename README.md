@@ -27,7 +27,7 @@
 <p align="center">
   <a href='https://sihuiji.github.io/MemFlow.github.io/'><img src='https://img.shields.io/badge/Project-Page-Green'></a>
   &nbsp;
-  <a href='https://www.youtube.com/watch?v=7l7-WlIrgHg'><img src='https://img.shields.io/static/v1?label=Youtube&message=DemoVideo&color=yellow&logo=youtube'></a>
+  <a href='https://www.youtube.com/watch?v=QCVdOhD5vFs'><img src='https://img.shields.io/static/v1?label=Youtube&message=DemoVideo&color=yellow&logo=youtube'></a>
   &nbsp;
   <a href="https://arxiv.org/abs/2512.14699"><img src="https://img.shields.io/static/v1?label=Arxiv&message=MemFlow&color=red&logo=arxiv"></a>
   &nbsp;
@@ -52,7 +52,7 @@ In this way, MemFlow achieves outstanding long-context consistency with negligib
 
 <div align="center">
 
-[![Watch the video](assets/cover.png)](https://www.youtube.com/watch?v=7l7-WlIrgHg)
+[![Watch the video](assets/cover.png)](https://www.youtube.com/watch?v=QCVdOhD5vFs)
 
 
 </div>
