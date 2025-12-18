@@ -145,7 +145,7 @@ Download Wan2.1-T2V-14B as the teacher model.
 ```
 huggingface-cli download Wan-AI/Wan2.1-T2V-14B --local-dir wan_models/Wan2.1-T2V-14B
 ```
-
+ 
 **Stage 1: Self-Forcing Initialization for Memory Mechanism**
 ```
 bash train_init.sh
