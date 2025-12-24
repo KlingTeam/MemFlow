@@ -37,6 +37,7 @@
 <!-- **Note:** This open-source repository is intended to provide a reference implementation. Due to the difference in the underlying I2V model's performance, the open-source version may not achieve the same performance as the model in our paper.  -->
 
 ## 🔥 Updates
+- __[2025.12.24]__: We release the benchmark of multi-prompt generation in our paper, a prompt set [`prompts/interactive_benchmark.jsonl`](prompts/interactive_benchmark.jsonl) consisting of 100 groups of narrative scripts, with each consisting of 6 successive 10-second prompts for a total of 100 videos lasting for 60 seconds.
 - __[2025.12.14]__: Training and inference code, [model checkpoints](https://huggingface.co/KlingTeam/MemFlow) are available.
 <!-- - __[2025.09.25]__: [CamCloneMaster](https://arxiv.org/abs/2506.03140) has been accepted by SIGGRAPH Aisa 2025. -->
 <!-- - __[2025.09.08]__: [CameraClone Dataset](https://huggingface.co/datasets/KwaiVGI/CameraClone-Dataset/) is avaliable. -->
@@ -158,6 +159,11 @@ bash train_long.sh
 **Hints for two stage training**
 
 The `bank_size` is a tunable hyperparameter specified in [`configs/train_init.yaml`](configs/train_init.yaml) and [`configs/train_long.yaml`](configs/train_long.yaml). It controls the number of latent frames stored in the memory bank. When `bank_size` matches the number of latent frames of frame sink in [LongLive](https://github.com/NVlabs/LongLive) (as in our default setting), training can optionally start directly from Stage 2 (Streaming Long Tuning). Specifically, we initialize from the checkpoint [`longlive_base.pt`](https://huggingface.co/Efficient-Large-Model/LongLive-1.3B/blob/main/models/longlive_base.pt) obtained in Stage 1 of [LongLive](https://github.com/NVlabs/LongLive) and fine-tune only the LoRA parameters, which significantly improves training efficiency.
+
+## 📏 Evaluation & Benchmark
+
+We provide a evaluation prompt set as benchmark for multi-prompt generation. Following [LongLive](https://github.com/NVlabs/LongLive), we customize 100 groups of narrative scripts, with each consisting of 6 successive 10-second prompts for a total of 100 videos
+lasting for 60 seconds. Set `data_path` in [`configs/interactive_inference.yaml`](configs/interactive_inference.yaml) as `prompts/interactive_benchmark.jsonl` for evaluation.
 
 
 <!-- ## How to contribute
