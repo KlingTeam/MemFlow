@@ -29,7 +29,8 @@ global_sink: true
 context_noise: 0
 
 generator_ckpt: checkpoints/base.pt
-lora_ckpt: checkpoints/lora.pt
+# lora_ckpt: checkpoints/lora.pt
+lora_ckpt: checkpoints/model.pt
 
 adapter:
   type: "lora"

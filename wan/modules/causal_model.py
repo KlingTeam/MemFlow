@@ -1031,8 +1031,8 @@ class CausalWanModel(ModelMixin, ConfigMixin):
                         cache["k"][:, write_start_index:write_end_index] = new_k
                         cache["v"][:, write_start_index:write_end_index] = new_v
                         if update_bank:
-                            bank["k_new"] = new_k[:, :1560]
-                            bank["v_new"] = new_v[:, :1560]
+                            bank["k_new"][:,:] = new_k[:, :1560]
+                            bank["v_new"][:,:] = new_v[:, :1560]
                     
                 elif update_info["action"] == "direct_insert":
                     # Direct insert
@@ -1053,8 +1053,8 @@ class CausalWanModel(ModelMixin, ConfigMixin):
                         cache["k"][:, write_start_index:write_end_index] = new_k
                         cache["v"][:, write_start_index:write_end_index] = new_v
                         if update_bank:
-                            bank["k_new"] = new_k[:, :1560]
-                            bank["v_new"] = new_v[:, :1560]
+                            bank["k_new"][:,:] = new_k[:, :1560]
+                            bank["v_new"][:,:] = new_v[:, :1560]
             
             # Update indices: do not roll back pointers during recomputation
             is_recompute = False if update_info is None else update_info.get("is_recompute", False)
@@ -1079,8 +1079,8 @@ class CausalWanModel(ModelMixin, ConfigMixin):
             write_end_index_bank = kv_bank[block_index]["local_end_index"]
             if write_end_index_bank >= 1560:
                 write_start_index_bank = write_end_index_bank - 1560
-                new_k = bank["k_new"]
-                new_v = bank["v_new"]
+                new_k = bank["k_new"].clone()
+                new_v = bank["v_new"].clone()
                 with torch.no_grad():
                     if write_end_index_bank <= bank["k"].shape[1]:
                         bank["k"][:, write_start_index_bank:write_end_index_bank] = new_k
@@ -1095,8 +1095,8 @@ class CausalWanModel(ModelMixin, ConfigMixin):
                             memory_budget_in_blocks=self.bank_size,
                             num_prototypes_in_blocks=1,
                         )
-                        bank["k"] = new_compressed_kv_cache["k"]
-                        bank["v"] = new_compressed_kv_cache["v"]
+                        bank["k"][:,:] = new_compressed_kv_cache["k"]
+                        bank["v"][:,:] = new_compressed_kv_cache["v"]
 
     def compress_kv_bank(
         self,
@@ -1124,8 +1124,8 @@ class CausalWanModel(ModelMixin, ConfigMixin):
             Dict[str, torch.Tensor]: The new, compressed KV cache dictionary.
         """
         # --- Step 0: Prepare Tensors and Information ---
-        hist_k, hist_v = kv_cache['k'], kv_cache['v']
-        text_q = crossattn_cache["k"]
+        hist_k, hist_v = kv_cache['k'].clone(), kv_cache['v'].clone()
+        text_q = crossattn_cache["k"].clone()
 
         B, L_hist, H, D = hist_k.shape
         L_new = new_k.shape[1]

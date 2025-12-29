@@ -37,6 +37,7 @@
 <!-- **Note:** This open-source repository is intended to provide a reference implementation. Due to the difference in the underlying I2V model's performance, the open-source version may not achieve the same performance as the model in our paper.  -->
 
 ## 🔥 Updates
+- __[2025.12.29]__: We release multi-node distributed training scripts for both initialization and streaming long tuning ([`train_init_multinode.sh`](train_init_multinode.sh), [`train_long_multinode.sh`](train_long_multinode.sh)).
 - __[2025.12.24]__: We release the benchmark of multi-prompt generation in our paper, a prompt set [`prompts/interactive_benchmark.jsonl`](prompts/interactive_benchmark.jsonl) consisting of 100 groups of narrative scripts, with each consisting of 6 successive 10-second prompts for a total of 100 videos lasting for 60 seconds.
 - __[2025.12.14]__: Training and inference code, [model checkpoints](https://huggingface.co/KlingTeam/MemFlow) are available.
 <!-- - __[2025.09.25]__: [CamCloneMaster](https://arxiv.org/abs/2506.03140) has been accepted by SIGGRAPH Aisa 2025. -->
@@ -148,14 +149,24 @@ huggingface-cli download Wan-AI/Wan2.1-T2V-14B --local-dir wan_models/Wan2.1-T2V
 ```
  
 **Stage 1: Self-Forcing Initialization for Memory Mechanism**
+
+Single-node training:
 ```
 bash train_init.sh
 ```
+Multi-node distributed training:
+```
+bash train_init_multinode.sh
+```
 **Stage 2: Streaming Long Tuning**
+Single-node training:
 ```
 bash train_long.sh
 ```
-
+Multi-node distributed training:
+```
+bash train_long_multinode.sh
+```
 **Hints for two stage training**
 
 The `bank_size` is a tunable hyperparameter specified in [`configs/train_init.yaml`](configs/train_init.yaml) and [`configs/train_long.yaml`](configs/train_long.yaml). It controls the number of latent frames stored in the memory bank. When `bank_size` matches the number of latent frames of frame sink in [LongLive](https://github.com/NVlabs/LongLive) (as in our default setting), training can optionally start directly from Stage 2 (Streaming Long Tuning). Specifically, we initialize from the checkpoint [`longlive_base.pt`](https://huggingface.co/Efficient-Large-Model/LongLive-1.3B/blob/main/models/longlive_base.pt) obtained in Stage 1 of [LongLive](https://github.com/NVlabs/LongLive) and fine-tune only the LoRA parameters, which significantly improves training efficiency.
